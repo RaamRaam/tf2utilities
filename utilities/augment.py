@@ -9,7 +9,7 @@ def flip_LR(x,y,params):
 def normalize_image(x,y):
   return (x['image']/255, y)
 
-
+fn_map={'flip_LR':flip_LR,'random_crop':random_crop}
 def data_aug(ds,class_names,class_weight,augment_weight,out_file):
   First=True
   ctr=0
@@ -24,11 +24,11 @@ def data_aug(ds,class_names,class_weight,augment_weight,out_file):
     cw=class_weight[class_names[y]]
     aw=[i['weight'] for i in augment_weight.values()]
 
-    f_list=[list(augment_weight.keys())[i] for i in range(len(a_ch)) if class_choice[i]<=cw and a_ch[i]<=aw[i]]
+    f_list=[eval(list(augment_weight.keys())[i]) for i in range(len(a_ch)) if class_choice[i]<=cw and a_ch[i]<=aw[i]]
     # if f_list!=[]:
     #   print('\n')
     for f in f_list:
-      k=f(x,y,augment_weight[f]['params'])
+      k=fn_map[f](x,y,augment_weight[f]['params'])
       # print(class_choice[i],a_ch,ctr,f.__name__)
       print('Augmenting Image ',ctr,' with ',f.__name__)
       x1=(k[0].numpy()).reshape(1,k[0].shape[0],k[0].shape[1],k[0].shape[2])
