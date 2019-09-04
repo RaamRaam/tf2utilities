@@ -11,7 +11,7 @@ def _bytes_feature(value):
   return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
 @timer
-@checkTFversion
+# @checkTFversion
 def convert_to_tfrecords(filename, data_set, label):
   """Converts a dataset to tfrecords."""
   n=len(data_set)
@@ -40,7 +40,7 @@ def convert_to_tfrecords(filename, data_set, label):
   # !cp  temp.tfrecords $filename
   # !rm temp.tfrecords
 @timer
-@checkTFversion
+# @checkTFversion
 def parser(record):
     keys_to_features = {
         "image": tf.io.FixedLenFeature([], tf.string),
@@ -57,7 +57,7 @@ def parser(record):
     return {'image': parsed_image}, label
 
 @timer
-@checkTFversion
+# @checkTFversion
 def create_tfrecords(path,data):
   # if type(data) is str:
   #   builder=tfds.builder(data)
@@ -78,7 +78,7 @@ def create_tfrecords(path,data):
   return 
 
 @timer
-@checkTFversion
+# @checkTFversion
 def create_classfile(path,class_names):
   with open(path, 'w') as f:
     f.writelines([i+'\n' for i in class_names])
