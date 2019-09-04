@@ -1,4 +1,4 @@
-from libraries import *
+from .libraries import *
 
 
 def _int64_feature(value):
