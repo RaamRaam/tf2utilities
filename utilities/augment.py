@@ -27,7 +27,7 @@ def data_aug(ds,class_names,class_weight,augment_weight,out_file):
     cw=class_weight[class_names[y]]
     aw=[i['weight'] for i in augment_weight.values()]
 
-    f_list=[eval(list(augment_weight.keys())[i]) for i in range(len(a_ch)) if class_choice[i]<=cw and a_ch[i]<=aw[i]]
+    f_list=[list(augment_weight.keys())[i] for i in range(len(a_ch)) if class_choice[i]<=cw and a_ch[i]<=aw[i]]
     # if f_list!=[]:
     #   print('\n')
     for f in f_list:
