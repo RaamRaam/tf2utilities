@@ -46,7 +46,7 @@ def data_aug(ds,class_names,class_weight,augment_weight,out_file):
   create_tfrecords(out_file,(x_augmented, y_augmented))
 
 @timer
-@checkTFversion
+# @checkTFversion
 def augment_images(path,class_weight,augment_weight,parallelize):
   class_names = [line.rstrip('\n') for line in open(os.path.join(path, "classes.txt"))]
   in_file=os.path.join(path, "train.tfrecords")
