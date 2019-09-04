@@ -9,8 +9,9 @@ def flip_LR(x,y,params):
 def normalize_image(x,y):
   return (x['image']/255, y)
 
-fn_map={'flip_LR':flip_LR,'random_crop':random_crop}
+
 def data_aug(ds,class_names,class_weight,augment_weight,out_file):
+  fn_map={'flip_LR':flip_LR,'random_crop':random_crop}
   First=True
   ctr=0
   for i in ds:
