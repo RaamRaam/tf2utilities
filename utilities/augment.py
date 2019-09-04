@@ -1,5 +1,5 @@
-from libraries import *
-from tfrecords import *
+from .libraries import *
+from .tfrecords import *
 
 def random_crop(x,y,params): 
   return (tf.image.random_crop(x, params['output_dim']),y)
