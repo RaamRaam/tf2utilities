@@ -30,7 +30,7 @@ def data_aug(ds,class_names,class_weight,augment_weight,out_file):
     for f in f_list:
       k=fn_map[f](x,y,augment_weight[f]['params'])
       # print(class_choice[i],a_ch,ctr,f.__name__)
-      print('Augmenting Image ',ctr,' with ',f.__name__)
+      print('Augmenting Image ',ctr,' with ',f)
       x1=(k[0].numpy()).reshape(1,k[0].shape[0],k[0].shape[1],k[0].shape[2])
       y1=np.array([k[1]])
       if First:
