@@ -43,7 +43,7 @@ def checkTFversion(func):
 def install_tf2():
   if str(tf.__version__)[:1]!='2': 
     os.system('pip uninstall tensorflow')
-    os.system('pip install -U --pre tensorflow')
+    os.system('pip install -U --pre tensorflow-gpu')
     print('TF 2.0 installed')
   else:
     print('TF 2.0 already installed')
