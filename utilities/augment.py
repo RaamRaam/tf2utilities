@@ -2,7 +2,7 @@ from .libraries import *
 from .tfrecords import *
 
 def standardize_image(x,y,mean,std):
-  normalize = lambda x: ((x - mean) / std).astype('float16')
+  normalize = lambda x: ((x - mean) / std)
   return (normalize(x['image']), y)
 
 def normalize_image(x,y):
