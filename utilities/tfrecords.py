@@ -11,16 +11,7 @@ def _bytes_feature(value):
   return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
 
-@timer
-# @checkTFversion
-def create_tfrecords_float(path,data):
-  if len(data)!=2 or len(data[0].shape)!=4 or len(data[1].shape)!=2:
-    raise AssertionError("Expecting tuple(np.ndarray(number of images, rows, cols, depth),np.ndarray(number of images,1))")
-  print("converting to tfrecords")  
-  print("number of images:", data[0].shape[0])
-  print("dimension of images: (", data[0].shape[1], data[0].shape[2], data[0].shape[3], ")")
-  convert_to_tfrecords_float(path, data[0], data[1])
-  return 
+
 
 
 @timer
@@ -66,7 +57,17 @@ def parser_float(record):
     label = tf.cast(parsed["label"], tf.int32)
     return {'image': parsed_image}, label
   
-  
+@timer
+# @checkTFversion
+def create_tfrecords_float(path,data):
+  if len(data)!=2 or len(data[0].shape)!=4 or len(data[1].shape)!=2:
+    raise AssertionError("Expecting tuple(np.ndarray(number of images, rows, cols, depth),np.ndarray(number of images,1))")
+  print("converting to tfrecords")  
+  print("number of images:", data[0].shape[0])
+  print("dimension of images: (", data[0].shape[1], data[0].shape[2], data[0].shape[3], ")")
+  convert_to_tfrecords_float(path, data[0], data[1])
+  return 
+
 @timer
 # @checkTFversion
 def convert_to_tfrecords(filename, data_set, label):
