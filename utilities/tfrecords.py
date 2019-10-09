@@ -46,9 +46,9 @@ def parser_float(record):
     keys_to_features = {
         "image": tf.io.FixedLenFeature([], tf.string),
         "label": tf.io.FixedLenFeature([], tf.int64),
-        "height": tf.io.FixedLenFeature([], tf.float16),
-        "width": tf.io.FixedLenFeature([], tf.float16),
-        "depth": tf.io.FixedLenFeature([], tf.float16)
+        "height": tf.io.FixedLenFeature([], tf.int64),
+        "width": tf.io.FixedLenFeature([], tf.int64),
+        "depth": tf.io.FixedLenFeature([], tf.int64)
     }
     parsed = tf.io.parse_single_example(record, keys_to_features)
     parsed_image = tf.io.decode_raw(parsed["image"], tf.float64)
