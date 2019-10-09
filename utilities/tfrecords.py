@@ -51,7 +51,7 @@ def parser_float(record):
         "depth": tf.io.FixedLenFeature([], tf.float16)
     }
     parsed = tf.io.parse_single_example(record, keys_to_features)
-    parsed_image = tf.io.decode_raw(parsed["image"], tf.float32)
+    parsed_image = tf.io.decode_raw(parsed["image"], tf.float64)
     parsed_image=  tf.reshape(parsed_image, [ parsed["height"], parsed["width"], parsed["depth"]])    
     label = tf.cast(parsed["label"], tf.int32)
     return {'image': parsed_image}, label
